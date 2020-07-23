@@ -1,5 +1,8 @@
 import 'package:dart_study_app/geek/20/count_container.dart';
+import 'package:dart_study_app/geek/20/event_bus_page.dart';
 import 'package:flutter/material.dart';
+
+import 'notification_widget.dart';
 
 class HomePage20 extends StatefulWidget {
   HomePage20({Key key, this.title = "HomePage20"}) : super(key: key);
@@ -30,12 +33,14 @@ class _HomePage20State extends State<HomePage20> {
   Widget build(BuildContext context) {
     //将CountContainer作为根节点，并使用0作为初始化count
     return DefaultTabController(
-      length: 1,
+      length: 3,
       child: Scaffold(
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
             CounterPage(),
+            NotificationWidget(),
+            FirstPage(),
 //            NotificationWidget(),
 //            FirstPage(),
           ],
@@ -46,14 +51,14 @@ class _HomePage20State extends State<HomePage20> {
               icon: Icon(Icons.home),
               text: "InheritedWidget",
             ),
-//            Tab(
-//              icon: Icon(Icons.rss_feed),
-//              text: "Notification",
-//            ),
-//            Tab(
-//              icon: Icon(Icons.perm_identity),
-//              text: "EventBus",
-//            )
+            Tab(
+              icon: Icon(Icons.rss_feed),
+              text: "Notification",
+            ),
+            Tab(
+              icon: Icon(Icons.perm_identity),
+              text: "EventBus",
+            )
           ],
           unselectedLabelColor: Colors.blueGrey,
           labelColor: Colors.blue,

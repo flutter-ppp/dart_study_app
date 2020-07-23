@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'geek/20/dart_main.dart';
+import 'geek/20/entry_main.dart';
 
 void main() {
   runApp(MyApp());

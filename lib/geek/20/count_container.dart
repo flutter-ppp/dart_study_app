@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class CounterPage extends StatefulWidget {
@@ -56,6 +58,10 @@ class Counter extends StatelessWidget {
         body: Text(
           'You have pushed the button this many times: ${state.model.count}',
         ),
-        floatingActionButton: FloatingActionButton(onPressed: state.increment));
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          // mock cost method ,Test in profile mode `flutter run --profile`
+          sleep(Duration(milliseconds: 200));
+          state.increment();
+        }));
   }
 }
