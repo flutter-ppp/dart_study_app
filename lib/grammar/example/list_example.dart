@@ -5,29 +5,14 @@ import '../util/helper.dart';
 /// list
 ///
 void main() {
-  doMap();
-}
+  var names = {"hello","jacky","alice"};
 
-// map 测试
-void doMap() {
-  var map = {"name": "jacky", "age": 10};
-  if (map.containsKey("name")) {
-    print("containsKey: name: ${map["name"]}");
-  }
-  print("name: ${map["name"]}");
-  print("age: ${map["age"]}");
-  print("school: ${map["school"]}");
+  /// tear-off 写法
+  /// good
+  names.forEach(print);
 
-  map.values.toList().forEach((element) {
-    print(element);
+  /// bad
+  names.forEach((name) {
+    print(name);
   });
-
-  print("--------------");
-  var a;
-
-  var data = a?.data ?? {};
-  print("type:${util.getType(data)}");
-
-  var b = {};
-  print("type:${util.getType(b)}");
 }
