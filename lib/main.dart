@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'geek/20/entry_main.dart';
+import 'geek/22/animation_main.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: HomePage20(),
+//      home: HomePage22(),
     );
   }
 }

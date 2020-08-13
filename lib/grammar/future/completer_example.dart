@@ -7,7 +7,14 @@ void main() async {
   util.println("1");
   doMockCompleter();
   util.println("2");
-  util.println(await _getNumber());
+  var future = _getNumber();
+  util.println(future.runtimeType.toString());
+  util.println("---");
+  var i = await future;
+  var j = await future;
+  var k = await future;
+
+  util.println("$i $j $k");
   util.println("3");
 }
 

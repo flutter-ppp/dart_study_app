@@ -1,11 +1,15 @@
 import 'package:dart_study_app/geek/20/count_container.dart';
 import 'package:dart_study_app/geek/20/event_bus_page.dart';
+import 'package:dart_study_app/geek/22/widget_animate_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'notification_widget.dart';
+import 'builder_animate_widget.dart';
+import 'hero_transition.dart';
+import 'normal_animate_widget.dart';
 
-class HomePage20 extends StatefulWidget {
-  HomePage20({Key key, this.title = "HomePage20"}) : super(key: key);
+
+class HomePage22 extends StatefulWidget {
+  HomePage22({Key key, this.title = "HomePage22"}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -19,44 +23,36 @@ class HomePage20 extends StatefulWidget {
   final String title;
 
   @override
-  _HomePage20State createState() => _HomePage20State();
+  _HomePage22State createState() => _HomePage22State();
 }
 
-class _HomePage20State extends State<HomePage20> {
+class _HomePage22State extends State<HomePage22> {
   int count = 0;
 
   void _incrementCounter() => setState(() {
-        count++;
-      }); //修改计数器
+    count++;
+  }); //修改计数器
 
   @override
   Widget build(BuildContext context) {
     //将CountContainer作为根节点，并使用0作为初始化count
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
           children: [
-            CounterPage(),
-            NotificationWidget(),
-            FirstPage(),
+            NormalAnimateWidget(),
+            BuilderAnimateWidget(),
+            WidgetAnimateWidget(),
+            Page1()
           ],
         ),
         bottomNavigationBar: TabBar(
           tabs: [
-            Tab(
-              icon: Icon(Icons.home),
-              text: "InheritedWidget",
-            ),
-            Tab(
-              icon: Icon(Icons.rss_feed),
-              text: "Notification",
-            ),
-            Tab(
-              icon: Icon(Icons.perm_identity),
-              text: "EventBus",
-            )
+            Tab(icon: Icon(Icons.home),text: "普通动画",),
+            Tab(icon: Icon(Icons.rss_feed),text: "Builder动画",),
+            Tab(icon: Icon(Icons.perm_identity),text: "Widget动画",),
+            Tab(icon: Icon(Icons.message),text:'hero动画')
           ],
           unselectedLabelColor: Colors.blueGrey,
           labelColor: Colors.blue,

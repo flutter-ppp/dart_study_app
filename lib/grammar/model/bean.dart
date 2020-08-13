@@ -24,7 +24,7 @@ class Singleton {
   factory Singleton() => _instance;
 
   // 静态私有成员，没有初始化
-  static Singleton _instance = Singleton._h();
+  static final Singleton _instance = Singleton._h();
 
   // 私有构造函数
   Singleton._h() {
