@@ -1,3 +1,4 @@
+import 'package:dart_study_app/ui/async/stream_builder_counter_demo.dart';
 import 'package:dart_study_app/ui/box_decoration.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home:
+//      FutureBuildDemoWidget(),
+          StreamBuilderCounterDemoWidget(),
+//          SteamBuilderDemoWidget(),
+//        MyHomePage(title: 'Flutter Demo Home Page'),
 //        home: HomePage20()
 //      home: HomePage22(),
     );
@@ -66,10 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final Widget _widget = ImageDecorationWidget();
-
   @override
   Widget build(BuildContext context) {
+    // ui
+    final Widget _widget = ImageDecorationWidget();
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -113,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
       ),
-      floatingActionButton:  FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),

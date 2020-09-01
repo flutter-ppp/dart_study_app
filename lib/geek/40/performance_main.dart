@@ -19,6 +19,8 @@ Future<Null> main() async {
     window.onReportTimings = onReportTimings;
   }, onError: (error, stackTrace) async {
     //拦截异常
+    print("onError...");
+    print(stackTrace);
     await reportError(error, stackTrace);
   });
 }
@@ -45,7 +47,9 @@ class MyHomePage extends StatefulWidget {
   int endTime;
 
   MyHomePage({Key key, this.title})
-      : startTime = DateTime.now().millisecondsSinceEpoch,
+      : startTime = DateTime
+      .now()
+      .millisecondsSinceEpoch,
         super(key: key);
 
   final String title;
@@ -61,7 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.endTime = DateTime.now().millisecondsSinceEpoch;
+      widget.endTime = DateTime
+          .now()
+          .millisecondsSinceEpoch;
       int timeSpend = widget.endTime - widget.startTime;
       print("Page render time:$timeSpend ms");
     });
@@ -88,7 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .display1,
             ),
           ],
         ),
