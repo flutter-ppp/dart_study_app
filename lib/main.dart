@@ -1,10 +1,37 @@
-import 'package:dart_study_app/ui/async/stream_builder_counter_demo.dart';
-import 'package:dart_study_app/ui/box_decoration.dart';
+import 'dart:math';
+
+import 'package:dart_study_app/ui/key/global_key_demo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+
+import 'geek/20/entry_main.dart';
+import 'geek/22/animation_main.dart';
+import "grammar/ext/ext_widget.dart";
+import 'packages/flutter_treeview_demo.dart';
+import 'ui/async/future_builder_demo.dart';
+import 'ui/async/stream_builder_counter_demo.dart';
+import 'ui/async/stream_builder_demo.dart';
+import 'ui/key/key_demo1.dart';
+import 'ui/key/key_demo2.dart';
+import 'ui/lifecycle/lifecycle_watcher.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+final List<Widget> widgets = [
+  FutureBuildDemoWidget(),
+  StreamBuilderCounterDemoWidget(),
+  LifecycleWatcher(),
+  FlutterTreeViewWidgetDemo(),
+  SteamBuilderDemoWidget(),
+  HomePage20(),
+  HomePage22(),
+  KeyDemo1Page(),
+  KeyDemo2Page(),
+  GlobalKeyDemo2Page()
+];
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -28,13 +55,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:
-//      FutureBuildDemoWidget(),
-          StreamBuilderCounterDemoWidget(),
-//          SteamBuilderDemoWidget(),
-//        MyHomePage(title: 'Flutter Demo Home Page'),
-//        home: HomePage20()
-//      home: HomePage22(),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -74,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // ui
-    final Widget _widget = ImageDecorationWidget();
+//    final Widget _widget = ImageDecorationWidget();
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -82,48 +103,56 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var originLists = <Widget>[
+      Text(
+        'You have pushed the button this many times:',
+      ),
+      Text(
+        '$_counter',
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: _widget ??
-            Column(
-              // Column is also a layout widget. It takes a list of children and
-              // arranges them vertically. By default, it sizes itself to fit its
-              // children horizontally, and tries to be as tall as its parent.
-              //
-              // Invoke "debug painting" (press "p" in the console, choose the
-              // "Toggle Debug Paint" action from the Flutter Inspector in Android
-              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-              // to see the wireframe for each widget.
-              //
-              // Column has various properties to control how it sizes itself and
-              // how it positions its children. Here we use mainAxisAlignment to
-              // center the children vertically; the main axis here is the vertical
-              // axis because Columns are vertical (the cross axis would be
-              // horizontal).
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ],
-            ),
+      body: ListView(
+        children: widgets
+            .map((e) => ItemWidget(e.toStringShort(), () {
+                  e.pushTo(context);
+                }))
+            .toList(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: _incrementCounter,
+//        tooltip: 'Increment',
+//        child: Icon(Icons.add),
+//      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+class ItemWidget extends StatelessWidget {
+  final String name;
+  final VoidCallback cb;
+
+  ItemWidget(this.name, this.cb);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        name,
+        style: TextStyle(color: Colors.black, fontSize: 20),
+      ),
+      decoration: BoxDecoration(
+          color: Color.fromARGB(255, Random().nextInt(256),
+              Random().nextInt(256), Random().nextInt(256))),
+      height: 60,
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.all(8),
+    ).addTapListener(cb);
   }
 }

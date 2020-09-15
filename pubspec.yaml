@@ -31,6 +31,8 @@ dependencies:
 
   event_bus: 1.1.0
 
+  flutter_treeview: ^0.6.0+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
