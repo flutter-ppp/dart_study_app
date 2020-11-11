@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dart_study_app/apm/tree_perfomance/apm_tree_performance.dart';
 import 'package:dart_study_app/ui/key/global_key_demo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -17,6 +18,11 @@ import 'ui/key/key_demo2.dart';
 import 'ui/lifecycle/lifecycle_watcher.dart';
 
 void main() {
+  // 显示详细 遍历 节点
+  debugProfileBuildsEnabled = true;
+//  debugProfilePaintsEnabled = true;
+//  debugPaintLayerBordersEnabled = true;
+
   runApp(MyApp());
 }
 
@@ -30,7 +36,8 @@ final List<Widget> widgets = [
   HomePage22(),
   KeyDemo1Page(),
   KeyDemo2Page(),
-  GlobalKeyDemo2Page()
+  GlobalKeyDemo2Page(),
+  ApmTreePerformanceDemoWidget()
 ];
 
 class MyApp extends StatelessWidget {

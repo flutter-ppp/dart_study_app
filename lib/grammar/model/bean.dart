@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dart_study_app/grammar/util/helper.dart';
 
 class Logger {
@@ -24,10 +26,10 @@ class Singleton {
   factory Singleton() => _instance;
 
   // 静态私有成员，没有初始化
-  static final Singleton _instance = Singleton._h();
+  static final Singleton _instance = Singleton._();
 
   // 私有构造函数
-  Singleton._h() {
+  Singleton._() {
     util.println("singleton initEd");
   }
 }
@@ -41,9 +43,24 @@ class Singleton2 {
   }
 }
 
+class Singleton3 {
+  static final Singleton3 _instance = Singleton3();
+  static var count = 1;
+  static var person = Person(2016);
+
+  static Singleton3 get instance {
+    var c = count++;
+    person = Person(2000);
+    util.println("person random:${person.random}");
+    util.println("LaLa count:=>$c");
+    return _instance;
+  }
+}
+
 class Person {
   final int birth;
   int age;
+  final int random = Random().nextInt(256);
 
   Person(this.birth) {
     age = 2000 - birth;

@@ -1,8 +1,8 @@
 import 'package:dart_study_app/grammar/model/bean.dart';
 
 void main() {
-//  test();
-  test2();
+  test();
+//  test2();
 }
 
 void test2() {
@@ -19,6 +19,10 @@ void test() {
   Singleton();
   Singleton();
   Singleton();
+
+  Singleton3.instance;
+  Singleton3.instance;
+  Singleton3.instance;
 
   var s1 = Singleton();
   var s2 = Singleton();
